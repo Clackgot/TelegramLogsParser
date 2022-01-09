@@ -103,7 +103,7 @@ namespace TelegramParser
                         copiedCount += 1;
                         progressBarValue = (double)(((double)copiedCount / (double)dirLogsWithTelegramCount) * 100);
                     }
-                    catch(Exception e)
+                    catch
                     {
                         errorCount++;
                     }
@@ -112,17 +112,17 @@ namespace TelegramParser
             }
 
 
-            if(errorCount == dirLogsWithTelegramCount)
+            if (errorCount == dirLogsWithTelegramCount)
             {
-                MessageBox.Show($"Не удалось скопировать {errorCount} папок", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Не удалось скопировать {errorCount} папок. Проверьте папку output, возможно там уже есть эти файлы", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (errorCount > 0)
             {
-                MessageBox.Show($"Cкопировано [{dirLogsWithTelegramCount-errorCount}/{dirLogsWithTelegramCount}] папок", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Cкопировано [{dirLogsWithTelegramCount - errorCount}/{dirLogsWithTelegramCount}] папок в директорию output", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                MessageBox.Show($"Скопировано {dirLogsWithTelegramCount} папок", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Скопировано {dirLogsWithTelegramCount} папок в директорию output", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
